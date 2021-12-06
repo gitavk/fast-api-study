@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "study-api"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = {extras = ["all"], version = "^0.70.0"}
+psycopg2-binary = "^2.9.2"
+SQLAlchemy = "^1.4.27"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+
+[tool.poetry.dev-dependencies]
+ipython = "^7.30.0"
+black = "^21.11b1"
+pynvim = "^0.4.3"
+pylint = "^2.12.2"
+flake8 = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
