@@ -13,9 +13,9 @@ router = APIRouter(
 
 
 @router.get("/", response_model=List[schemas.PostResponse])
-async def read(db: Session = Depends(get_db)):
+async def read(db: Session = Depends(get_db), limit: int = 10):
     posts = db.query(models.Post)
-    return posts.all()
+    return posts.limit(limit).all()
 
 
 @router.post(
