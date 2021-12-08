@@ -26,7 +26,7 @@ async def create(
     db: Session = Depends(get_db),
     user_pk: int = Depends(oauth2.get_current_user),
 ):
-    print(user_pk)
+    post_data.owner_id = user_pk
     post = models.Post(**post_data.dict())
     db.add(post)
     db.commit()

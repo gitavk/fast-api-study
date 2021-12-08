@@ -6,15 +6,7 @@ class Post(BaseModel):
     title: str
     content: str
     published: bool = True
-
-
-class PostResponse(BaseModel):
-    title: str
-    content: str
-    published: bool
-
-    class Config:
-        orm_mode = True
+    owner_id: int = 0
 
 
 class UserCreate(BaseModel):
@@ -30,6 +22,16 @@ class UserLogin(BaseModel):
 class UserResponse(BaseModel):
     email: str
     created_at: dt.date
+
+    class Config:
+        orm_mode = True
+
+
+class PostResponse(BaseModel):
+    title: str
+    content: str
+    published: bool
+    owner: UserResponse
 
     class Config:
         orm_mode = True
