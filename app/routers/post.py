@@ -1,5 +1,6 @@
 from typing import List
 from fastapi import Depends, status, HTTPException, Response, APIRouter
+from sqlalchemy import func
 from sqlalchemy.orm import Session
 from .. import schemas
 from .. import models
@@ -12,10 +13,23 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[schemas.PostResponse])
+@router.get("/", response_model=List[schemas.PostVoteResponse])
 async def read(db: Session = Depends(get_db), limit: int = 10):
-    posts = db.query(models.Post)
-    return posts.limit(limit).all()
+    q_posts = (
+        db.query(
+            models.Post,
+            func.count(
+                models.Vote.post_id,
+            ).label("votes"),
+        )
+        .join(
+            models.Vote,
+            models.Vote.post_id == models.Post.pk,
+            isouter=True,
+        )
+        .group_by(models.Post.pk)
+    )
+    return q_posts.limit(limit).all()
 
 
 @router.post(

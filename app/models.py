@@ -29,3 +29,14 @@ class Post(Base):
         Integer, ForeignKey("users.pk", ondelete="CASCADE"), nullable=False
     )
     owner = relationship("User")
+
+
+class Vote(Base):
+    __tablename__ = "votes"
+
+    post_id = Column(
+        Integer, ForeignKey("posts.pk", ondelete="CASCADE"), primary_key=True
+    )
+    user_id = Column(
+        Integer, ForeignKey("users.pk", ondelete="CASCADE"), primary_key=True
+    )
