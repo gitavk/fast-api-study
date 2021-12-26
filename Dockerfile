@@ -16,6 +16,8 @@ FROM python:3.9-slim
 
 COPY --from=builder /.venv /venv
 
+WORKDIR /app
+
 COPY . .
 
 CMD ["/venv/bin/python", "/venv/bin/uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
