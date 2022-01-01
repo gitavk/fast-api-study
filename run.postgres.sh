@@ -1,1 +1,1 @@
-docker run --name fast-postgres -p 5432:5432  -e POSTGRES_PASSWORD=postgres -d postgres:latest
+docker run --name fast-postgres -p 5435:5432  -e POSTGRES_PASSWORD=postgres -d postgres:latest

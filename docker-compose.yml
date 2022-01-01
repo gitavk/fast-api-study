@@ -18,6 +18,8 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=fastdb
+    ports:
+      - 5432:5432
     volumes:
       - fast-db:/var/lib/postgresql/data
 
