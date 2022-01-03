@@ -8,6 +8,18 @@ on:
 
 jobs:
   job1:
+    environment:
+      name: testing
+    env:
+      DB_HOST: ${{secrets.DB_HOST}}
+      DB_PORT: ${{secrets.DB_PORT}}
+      DB_NAME: ${{secrets.DB_NAME}}
+      DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+      DB_USER:  ${{secrets.DB_USER}}
+      JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
+      JWT_ALGORITHM: ${{secrets.JWT_ALGORITHM}}
+      JWT_ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.JWT_ACCESS_TOKEN_EXPIRE_MINUTES}}
+
     runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
